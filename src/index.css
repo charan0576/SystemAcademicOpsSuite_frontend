@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Color tokens ────────────────────────────────────────────────────────── */
+:root {
+  /* 3.jpg palette: white/lavender top-left → cyan/aqua top-right */
+  --brand-from:   #e8eeff;   /* soft lavender-white  */
+  --brand-mid:    #c5f0f8;   /* light sky-cyan        */
+  --brand-to:     #7dd9f0;   /* bright aqua           */
+  --brand-accent: #0ea5c9;   /* strong cyan-blue      */
+  --brand-dark:   #0b6e8a;   /* deep teal             */
+
+  --background: 195 50% 97%;
+  --foreground: 210 40% 12%;
+
+  --card:              0 0% 100%;
+  --card-foreground:   210 40% 12%;
+  --popover:           0 0% 100%;
+  --popover-foreground:210 40% 12%;
+
+  --primary:           193 85% 40%;
+  --primary-foreground:0 0% 100%;
+
+  --secondary:         220 50% 92%;
+  --secondary-foreground: 210 40% 20%;
+
+  --muted:             200 30% 93%;
+  --muted-foreground:  210 20% 50%;
+
+  --accent:            193 85% 40%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive:       0 80% 58%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border:            200 25% 88%;
+  --input:             200 25% 88%;
+  --ring:              193 85% 40%;
+  --radius:            0.75rem;
+
+  /* Sidebar uses the gradient palette */
+  --sidebar-background: 195 60% 98%;
+  --sidebar-foreground: 210 35% 25%;
+  --sidebar-primary:    193 85% 40%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent:     195 55% 93%;
+  --sidebar-accent-foreground: 193 85% 35%;
+  --sidebar-border:     200 30% 88%;
+  --sidebar-ring:       193 85% 40%;
+  --sidebar-muted:      210 20% 55%;
+
+  --success: 145 60% 40%;
+  --success-foreground: 0 0% 100%;
+  --warning: 38 90% 52%;
+  --warning-foreground: 210 40% 12%;
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────────── */
+@layer base {
+  * { @apply border-border; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8f8fc 50%, #cef3fb 100%);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    letter-spacing: -0.015em;
+  }
+}
+
+/* ─── Utilities ────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* ── Cards ── */
+  .card-clean {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl border border-cyan-100/80 shadow-sm;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar-clean {
+    background: linear-gradient(180deg, #f8fcff 0%, #eef9fd 60%, #e0f6fc 100%);
+    border-right: 1.5px solid #c5edf8;
+  }
+
+  /* ── Topbar ── */
+  .topbar-clean {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid #d0eff8;
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    @apply text-[10px] font-bold uppercase tracking-widest px-3 mb-1;
+    color: #7dc8db;
+  }
+
+  /* ── Badges ── */
+  .badge-blue   { @apply inline-flex items-center bg-cyan-50   text-cyan-700   text-xs font-semibold px-2 py-0.5 rounded-full border border-cyan-100; }
+  .badge-green  { @apply inline-flex items-center bg-teal-50   text-teal-700   text-xs font-semibold px-2 py-0.5 rounded-full border border-teal-100; }
+  .badge-orange { @apply inline-flex items-center bg-orange-50 text-orange-600 text-xs font-semibold px-2 py-0.5 rounded-full border border-orange-100; }
+  .badge-red    { @apply inline-flex items-center bg-red-50    text-red-600    text-xs font-semibold px-2 py-0.5 rounded-full border border-red-100; }
+  .badge-purple { @apply inline-flex items-center bg-violet-50 text-violet-600 text-xs font-semibold px-2 py-0.5 rounded-full border border-violet-100; }
+  .badge-sky    { @apply inline-flex items-center bg-sky-50    text-sky-600    text-xs font-semibold px-2 py-0.5 rounded-full border border-sky-100; }
+
+  /* ── Page enter ── */
+  .page-enter { animation: pageEnter 0.3s ease-out both; }
+
+  /* ── Brand gradient text ── */
+  .brand-text {
+    background: linear-gradient(90deg, #0ea5c9, #06b6d4, #67e8f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Brand gradient bg ── */
+  .brand-bg {
+    background: linear-gradient(135deg, #0ea5c9 0%, #06b6d4 50%, #22d3ee 100%);
+  }
+
+  /* ── Gradient page background ── */
+  .page-bg {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8f8fc 50%, #cef3fb 100%);
+  }
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c5edf8; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #0ea5c9; }
+
+/* ─── Responsive helpers ───────────────────────────────────────────────────── */
+html, body, #root { width: 100%; overflow-x: hidden; }
+
+@media (max-width: 768px) {
+  input, select, textarea { font-size: 16px !important; }
+  button, [role="button"] { min-height: 36px; }
+}
+
+@media (max-width: 1024px) {
+  [data-radix-dialog-content] {
+    max-width: calc(100vw - 2rem) !important;
+    max-height: 90dvh !important;
+    overflow-y: auto !important;
+  }
+}
